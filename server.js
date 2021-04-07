@@ -49,8 +49,6 @@ router.post('/signup', function(req, res) {
         user.username = req.body.username;
         user.password = req.body.password;
 
-        res.json({success: true, msg: 'Successfully created new user.'})
-
         user.save(function(err){
             if (err) {
                 if (err.code == 11000)
