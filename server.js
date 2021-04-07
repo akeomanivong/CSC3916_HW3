@@ -1,5 +1,5 @@
 /*
-CSC3916 HW2
+CSC3916 HW3
 File: Server.js
 Description: Web API scaffolding for Movie API
  */
@@ -48,6 +48,8 @@ router.post('/signup', function(req, res) {
         user.name = req.body.name;
         user.username = req.body.username;
         user.password = req.body.password;
+
+        res.json({success: true, msg: 'Successfully created new user.'})
 
         user.save(function(err){
             if (err) {
