@@ -4,6 +4,7 @@ File: Server.js
 Description: Web API scaffolding for Movie API
  */
 
+require('dotenv').config();
 var express = require('express');
 var bodyParser = require('body-parser');
 var passport = require('passport');
