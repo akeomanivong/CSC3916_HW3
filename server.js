@@ -81,7 +81,7 @@ router.post('/signin', function (req, res) {
                 res.json ({success: true, username: userToken, token: 'JWT ' + token});
             }
             else {
-                res.status(401).send({success: false, msg: 'Authentication failed.'});
+                res.status(401).send({success: false, msg: 'Invalid username or password.'});
             }
         })
     })
@@ -100,8 +100,8 @@ router.route('/movies')
 
 
         else if (!req.body.actors[2]) {
-            console.log("Error. Each movie requires 3 actors!");
-            res.json({success: false, message: "Error. Each movie requires 3 actors!"});
+            console.log("Error. Each movie requires at least 3 actors!");
+            res.json({success: false, message: "Error. Each movie requires at least 3 actors!"});
         }
 
         else{
@@ -130,7 +130,7 @@ router.route('/movies')
         Movie.find(function(err, movies){
             if(err){
                 console.log("There was an error getting movie :(");
-                res.json({success: false, message :"There was an error getting movie :("})
+                res.json({success: false, message :"There was an error getting movie"})
             }
 
             else{
@@ -143,7 +143,7 @@ router.route('/movies')
     .put(authJwtController.isAuthenticated, function (req, res) {
         console.log(req.body);
         if (!req.body.title || !req.body.item || !req.body.update) {
-            console.log("Error. One or more field is missing from update");
+            console.log("Error. Must contain movie title, item to be updated, and the updated value");
             return res.error;
         }
 
@@ -167,14 +167,14 @@ router.route('/movies')
         Movie.findOneAndDelete({title: req.body.title}, function (err, movie) {
             if (err)
             {
-                res.status(400).json({success: false, message: "Error!"})
+                res.status(400).json({success: false, message: "Error"})
             }
             else if(movie == null)
             {
                 res.json({success: false, message : "Movie not found"})
             }
             else{
-                res.json({success: true, message :"Movie has been deleted!"})}
+                res.json({success: true, message :"Movie has been deleted"})}
         });
     });
 
