@@ -142,12 +142,12 @@ router.route('/movies')
 
     .put(authJwtController.isAuthenticated, function (req, res) {
         console.log(req.body);
-        if (!req.body.title || !req.body.att || !req.body.update) {
+        if (!req.body.title || !req.body.item || !req.body.update) {
             console.log("Error. One or more field is missing from update");
             return res.error;
         }
 
-        var update = req.body.att;
+        var update = req.body.item;
         var objUpdate = {};
         objUpdate[update] = req.body.update;
 
